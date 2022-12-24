@@ -1,4 +1,4 @@
-function drip!(robot::Robot)
+function drip(robot::Robot)
     back_path = move_to_angle!(robot::Robot)
     perimeter!(robot::Robot)
     move!(robot::Robot,back_path::Vector{NamedTuple{(:side, :num_steps), Tuple{HorizonSide,Int}}})
