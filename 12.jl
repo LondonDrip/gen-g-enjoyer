@@ -1,5 +1,6 @@
 using HorizonSideRobots
-function count_partitions(robot)
+r=Robot(15,15; animate=true)
+function yeat!(robot)
     side = Ost
     count = 0
     count_check = 0
@@ -29,4 +30,6 @@ function count_partitions(robot)
 end
 
 inverse(side::HorizonSide) = HorizonSide((Int(side) +2)% 4)
+yeat!(r)
+
             
