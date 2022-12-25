@@ -1,4 +1,4 @@
-function find_marker!(robot) #Функция, ищущая маркер
+function find_marker!(robot) 
     k=0
     side=Nord
     while (!ismarker(robot))
