@@ -1,21 +1,26 @@
-function ulitka(robot)
-    a = true
-    side = West
-    n_steps = 1
-    check_steps = 0
-    while a 
-        side = right(side)
-        for _  in 1:n_steps
-            move!(robot,side)
-            if ismarker(robot)
-                a = false
-                return
-            end
-        end
-        check_steps += 1
-        if check_steps % 2 == 0
-            n_steps += 1
-        end
+function find_marker!(robot) #Функция, ищущая маркер
+    k=0
+    side=Nord
+    while (!ismarker(robot))
+      for _i in 1:2
+        along!(side,k,robot)
+        side=right(side)
+      end
+      k+=1
     end
-end
-right(side::HorizonSide)::HorizonSide = HorizonSide(mod(Int(side) - 1 , 4)) 
+  end
+  
+  function along!(side,num_steps,robot)
+    for _i in 1:num_steps
+      if (!ismarker(robot))
+        move!(robot,side)
+      end
+    end
+  end
+  
+  
+  function solve!(robot)
+  find_marker!(robot)
+  end
+  
+  right(side::HorizonSide)::HorizonSide = HorizonSide(mod(Int(side)+1, 4))
