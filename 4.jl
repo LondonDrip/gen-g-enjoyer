@@ -10,7 +10,6 @@ function cross_move(robot, side_x, side_y)
         num_step += 1
     end 
 
-    #блок инверсии
     if side_x == Nord
         side_x = Sud
     else
