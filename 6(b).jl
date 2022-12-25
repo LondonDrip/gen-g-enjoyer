@@ -5,16 +5,15 @@ function drip(robot)
     
 end
 
-function move_to_angle!(robot, angle=(Sud,West)) # Идем в Юго-Западный угол, запоминая направления и шаги 
-    back_path = NamedTuple{(:side, :num_steps), Tuple{HorizonSide,Int}}[] # - пустой вектор типа Tuple{HorizonSide, Int}
+function move_to_angle!(robot, angle=(Sud,West)) 
+    back_path = NamedTuple{(:side, :num_steps), Tuple{HorizonSide,Int}}[] 
     while !isborder(robot,angle[1]) || !isborder(robot, angle[2])
         push!(back_path, (side = inverse(angle[1]), num_steps = numsteps_along!(robot, angle[1])))
         push!(back_path, (side = inverse(angle[2]), num_steps = numsteps_along!(robot, angle[2])))  
     end
     return back_path
 end
-function HorizonSideRobots.move!(robot::CoordRobot, back_path::Vector{NamedTuple{(:side, :num_steps), Tuple{HorizonSide,Int}}}) #Возвращаемся в исходное положение на основе данных из функции move_to_angle!(robot, angle=(Sud,West))
-    back_path = reverse!(back_path)
+function HorizonSideRobots.move!(robot::CoordRobot, back_path::Vector{NamedTuple{(:side, :num_steps), Tuple{HorizonSide,Int}}})
     for next in back_path
         along!(robot, next.side, next.num_steps)
     end
@@ -32,7 +31,7 @@ end
 
 function check_coord(robot)
     x,y = get_coord(robot)
-    if x == 0 || y == 0 #Начальные координаты будут (0,0), поэтому проверяем координаты именно на эти значения 
+    if x == 0 || y == 0 
         return true
     else
         return false
