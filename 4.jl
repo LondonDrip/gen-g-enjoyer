@@ -22,7 +22,7 @@ function cross_move(robot, side_x, side_y)
     else
         side_y = Ost
     end
-    #
+
 
     for _ in 1:num_step
         move!(robot, side_x)
