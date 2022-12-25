@@ -8,7 +8,6 @@ function double_dist!(robot,side)
  
             else
                 return false
-
             end
         end
     end
